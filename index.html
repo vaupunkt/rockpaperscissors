@@ -14,7 +14,18 @@
             var word = words[Math.floor(Math.random()*words.length)];
             return word;
         }
-        console.log(getComputerSelection());
+        function playerSelection() {
+            var choice = prompt("What is your choice?");
+            var input = choice.toLowerCase();
+            if (input != "rock" && input != "scissors" && input != "paper") {
+                alert("Please choose again!");
+                playerSelection();
+            }
+            return input
+            
+        }
+        playerSelection();
+        console.log(computerSelection);
     </script>
 </body>
 </html>
