@@ -7,6 +7,14 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    
+    <script>
+        const computerSelection = getComputerSelection();
+        function getComputerSelection() {
+            var words = ["Rock", "Paper", "Scissors"];
+            var word = words[Math.floor(Math.random()*words.length)];
+            return word;
+        }
+        console.log(getComputerSelection());
+    </script>
 </body>
 </html>
