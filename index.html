@@ -9,43 +9,55 @@
 <body>
     <script>
         const words = ["Rock", "Paper", "Scissors"];
+        const computerSelection = getComputerSelection();
+        const playerSelection = getPlayerSelection();
+        const winner;
+
         function getComputerSelection() {
             var word = words[Math.floor(Math.random()*words.length)];
             return word;
         }
 
         function getPlayerSelection() {
-            var choice = prompt("What is your choice?");
+            var choice = prompt("Rock, Paper, Scissors!\nWhat is your choice?");
             var input = choice.toLowerCase().charAt(0).toUpperCase()+choice.slice(1).toLowerCase();
-            if (input != words[0] && input != words[1] && input != words[2]) {
-                alert("Please choose again!");
-                getPlayerSelection();
-            } else {return input;}
+            while (input != words[0] && input != words[1] && input != words[2]) {
+                var choice = prompt("Please choose again! ROCK, PAPER or SCISSORS");
+                var input = choice.toLowerCase().charAt(0).toUpperCase()+choice.slice(1).toLowerCase();
+            } 
+            return input;
             
         }
-        function playRound() {
-            let computerSelection = getComputerSelection();
-            let playerSelection = getPlayerSelection();
-            console.log("Computer: "+computerSelection+" | Spieler: "+playerSelection);
+        function playRound(computerSelection, playerSelection) {
+            console.log("Computer: "+computerSelection+" | Player: "+playerSelection);
             if (playerSelection==computerSelection) {
-                console.log("Unentschieden");
+                winner = "none";
+                console.log("Draw");
             } else if (playerSelection==words[0]&&computerSelection==words[1]) {
+                winner = "Computer";
                 console.log("Computer wins!");
             } else if (playerSelection==words[0]&&computerSelection==words[2]) {
+                winner = "Player";
                 console.log("Player wins!");
             } else if (playerSelection==words[1]&&computerSelection==words[0]) {
+                winner = "Player";
                 console.log("Player wins!");
             } else if (playerSelection==words[1]&&computerSelection==words[2]) {
+                winner = "Computer";
                 console.log("Computer wins!");
             } else if (playerSelection==words[2]&&computerSelection==words[0]) {
+                winner = "Computer";
                 console.log("Computer wins!");
             } else if (playerSelection==words[2]&&computerSelection==words[1]) {
+                winner = "Player";
                 console.log("Player wins!");
             }
         }
         for (let i = 0; i < 5; i++) {
-            console.log("Runde "+(i+1))
-            playRound();
+            console.log("Round "+(i+1))
+            playRound(computerSelection, playerSelection);
+            getComputerSelection();
+            getPlayerSelection();
         }
     </script>
 </body>
