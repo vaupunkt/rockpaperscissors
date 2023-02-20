@@ -9,12 +9,13 @@
 <body>
     <script>
         const words = ["Rock", "Paper", "Scissors"];
-        const computerSelection = getComputerSelection();
-        const playerSelection = getPlayerSelection();
+        let computerSelection;
+        let playerSelection;
 
         function getComputerSelection() {
             var word = words[Math.floor(Math.random()*words.length)];
-            return word;
+            computerSelection = word;
+        
         }
 
         function getPlayerSelection() {
@@ -24,37 +25,38 @@
                 var choice = prompt("Please choose again! ROCK, PAPER or SCISSORS");
                 var input = choice.toLowerCase().charAt(0).toUpperCase()+choice.slice(1).toLowerCase();
             } 
-            return input;
-            
+            playerSelection = input;
         }
         function playRound(computerSelection, playerSelection) {
-            console.log("Computer: "+computerSelection+" | Player: "+playerSelection);
+            let result = "Computer: "+computerSelection+" | Player: "+playerSelection;
+            let text;
             if (playerSelection==computerSelection) {
-                let result = "It's a draw";
+                text = "It's a draw";
             } else if (playerSelection==words[0]&&computerSelection==words[1]) {
-                let result = "You loose! Paper beats Rock";
+                text = "You loose! Paper beats Rock";
             } else if (playerSelection==words[0]&&computerSelection==words[2]) {
-                let result = "You win! Rock beats Scissors";
+                text = "You win! Rock beats Scissors";
             } else if (playerSelection==words[1]&&computerSelection==words[0]) {
-                let result = "You win! Paper beats Rock";
+                text = "You win! Paper beats Rock";
             } else if (playerSelection==words[1]&&computerSelection==words[2]) {
-                let result = "You loose! Scissors beat Paper";
+                text = "You loose! Scissors beat Paper";
             } else if (playerSelection==words[2]&&computerSelection==words[0]) {
-                let result = "You loose! Rock beats Scissors";
+                text = "You loose! Rock beats Scissors";
             } else if (playerSelection==words[2]&&computerSelection==words[1]) {
-                let result = "You win! Scissors beat Paper";
+                text = "You win! Scissors beat Paper";
             }
-            return result;
+            let round = result+"\n"+text;
+            return round;
         }
-        
+
         function game() {
-        for (let i = 0; i < 5; i++) {
-            getComputerSelection();
-            getPlayerSelection();
-            console.log("Round "+(i+1))
-            console.log(playRound(computerSelection, playerSelection));
+            for (let i = 0; i < 5; i++) {
+                getComputerSelection();
+                getPlayerSelection();
+                playRound(computerSelection, playerSelection);
+                let output = "Round "+(i+1)+"\n"+playRound(computerSelection,playerSelection);
+            }
         }
-    }
     </script>
 </body>
 </html>
