@@ -11,7 +11,6 @@
         const words = ["Rock", "Paper", "Scissors"];
         const computerSelection = getComputerSelection();
         const playerSelection = getPlayerSelection();
-        const winner;
 
         function getComputerSelection() {
             var word = words[Math.floor(Math.random()*words.length)];
@@ -31,34 +30,31 @@
         function playRound(computerSelection, playerSelection) {
             console.log("Computer: "+computerSelection+" | Player: "+playerSelection);
             if (playerSelection==computerSelection) {
-                winner = "none";
-                console.log("Draw");
+                let result = "It's a draw";
             } else if (playerSelection==words[0]&&computerSelection==words[1]) {
-                winner = "Computer";
-                console.log("Computer wins!");
+                let result = "You loose! Paper beats Rock";
             } else if (playerSelection==words[0]&&computerSelection==words[2]) {
-                winner = "Player";
-                console.log("Player wins!");
+                let result = "You win! Rock beats Scissors";
             } else if (playerSelection==words[1]&&computerSelection==words[0]) {
-                winner = "Player";
-                console.log("Player wins!");
+                let result = "You win! Paper beats Rock";
             } else if (playerSelection==words[1]&&computerSelection==words[2]) {
-                winner = "Computer";
-                console.log("Computer wins!");
+                let result = "You loose! Scissors beat Paper";
             } else if (playerSelection==words[2]&&computerSelection==words[0]) {
-                winner = "Computer";
-                console.log("Computer wins!");
+                let result = "You loose! Rock beats Scissors";
             } else if (playerSelection==words[2]&&computerSelection==words[1]) {
-                winner = "Player";
-                console.log("Player wins!");
+                let result = "You win! Scissors beat Paper";
             }
+            return result;
         }
+        
+        function game() {
         for (let i = 0; i < 5; i++) {
-            console.log("Round "+(i+1))
-            playRound(computerSelection, playerSelection);
             getComputerSelection();
             getPlayerSelection();
+            console.log("Round "+(i+1))
+            console.log(playRound(computerSelection, playerSelection));
         }
+    }
     </script>
 </body>
 </html>
