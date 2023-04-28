@@ -4,62 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/script.js" defer></script>
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <script>
-        const words = ["Rock", "Paper", "Scissors"];
-        let computerSelection;
-        let playerSelection;
-
-        function getComputerSelection() {
-            var word = words[Math.floor(Math.random()*words.length)];
-            computerSelection = word;
-        
-        }
-
-        function getPlayerSelection() {
-            var choice = prompt("Rock, Paper, Scissors!\nWhat is your choice?");
-            var input = choice.toLowerCase().charAt(0).toUpperCase()+choice.slice(1).toLowerCase();
-            while (input != words[0] && input != words[1] && input != words[2]) {
-                var choice = prompt("Please choose again! ROCK, PAPER or SCISSORS");
-                var input = choice.toLowerCase().charAt(0).toUpperCase()+choice.slice(1).toLowerCase();
-            } 
-            playerSelection = input;
-        }
-        function playRound(computerSelection, playerSelection) {
-            let result = "Computer: "+computerSelection+" | Player: "+playerSelection;
-            let text;
-            if (playerSelection==computerSelection) {
-                text = "It's a draw";
-            } else if (playerSelection==words[0]&&computerSelection==words[1]) {
-                text = "You loose! Paper beats Rock";
-            } else if (playerSelection==words[0]&&computerSelection==words[2]) {
-                text = "You win! Rock beats Scissors";
-            } else if (playerSelection==words[1]&&computerSelection==words[0]) {
-                text = "You win! Paper beats Rock";
-            } else if (playerSelection==words[1]&&computerSelection==words[2]) {
-                text = "You loose! Scissors beat Paper";
-            } else if (playerSelection==words[2]&&computerSelection==words[0]) {
-                text = "You loose! Rock beats Scissors";
-            } else if (playerSelection==words[2]&&computerSelection==words[1]) {
-                text = "You win! Scissors beat Paper";
-            }
-            let round = result+"\n"+text;
-            return round;
-        }
-
-        function game() {
-            for (let i = 0; i < 5; i++) {
-                getComputerSelection();
-                getPlayerSelection();
-                playRound(computerSelection, playerSelection);
-                let output = "Round "+(i+1)+"\n"+playRound(computerSelection,playerSelection);
-                console.log(output);
-            }
-        }
-        
-        game();
-    </script>
+    <h1>Rock Paper Scissors</h1>
+    <div class="game">
+        <div id="buttons">
+            <button id="rock" onClick="game('Rock')">ROCK</button>
+            <button id="paper" onClick="game('Paper')">PAPER</button>
+            <button id="scissors" onClick="game('Scissors')">SCISSOR</button>
+        </div>
+    </div>
+    <div id="result">
+        <p id="resultMessage"></p>
+    </div>
 </body>
 </html>
