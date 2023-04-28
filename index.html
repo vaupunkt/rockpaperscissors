@@ -5,24 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
     <h1>Rock Paper Scissors</h1>
     <div class="game">
-        <div id="buttons">
-            <button id="rock" onClick="game('Rock')">ROCK</button>
-            <button id="paper" onClick="game('Paper')">PAPER</button>
-            <button id="scissors" onClick="game('Scissors')">SCISSOR</button>
-        </div>
-    </div>
-    <div id="result">
         <div id="points">
-            <p>Player: </p><p id="counterPlayer">0</p>
-            <p>Computer:</p><p id="counterComputer">0</p>
+            <div id="player">
+                <p>Player: </p><p id="counterPlayer">0</p>
+            </div>
+            <div id="computer">
+                <p>Computer:</p><p id="counterComputer">0</p>
+            </div>
         </div>
-        <p id="resultMessage"></p>
-        <button id="resetButton" style="display:none;">Reset</button
+        <div id="button-container">
+            <div id="buttons">
+                <button id="rock" onClick="game('Rock')">ROCK</button>
+                <button id="paper" onClick="game('Paper')">PAPER</button>
+                <button id="scissors" onClick="game('Scissors')">SCISSOR</button>
+            </div>
+        </div>
+        <div id="result">  
+            <p id="resultMessage"></p>
+            <button id="resetButton" style="display:none;">Reset</button>
+        </div>
     </div>
+    
 </body>
 </html>

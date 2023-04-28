@@ -64,6 +64,7 @@ function game(playerSelection) {
     if (countPlayer < 5 | countComputer < 5) {
         getComputerSelection();
         playRound(playerSelection);
+        count++;
         counterPlayer.classList.add('counterPlayer');
         counterComputer.classList.add('counterPlayer');
         counterPlayer.textContent = countPlayer;
@@ -76,7 +77,7 @@ function game(playerSelection) {
             winner = "YOU WON!";
             output = output+"<br><br>"+winner;
         }
-        let message = "Round "+(count+1)+"<br>"+output;
+        let message = "Round "+(count)+"<br>"+output;
         const textparagraph = document.querySelector('#resultMessage');
         textparagraph.classList.add('textparagraph');
         textparagraph.innerHTML = message;
@@ -86,6 +87,7 @@ function game(playerSelection) {
             resetButton.addEventListener("click", () => {
                 countPlayer = 0;
                 countComputer = 0;
+                count = 0;
                 counterComputer.textContent = countComputer;
                 counterPlayer.textContent = countPlayer;
                 textparagraph.textContent ="";
