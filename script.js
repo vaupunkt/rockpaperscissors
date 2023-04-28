@@ -1,7 +1,11 @@
 const words = ["Rock", "Paper", "Scissors"];
 let computerSelection;
 let playerSelection;
+var countPlayer = 0;
+var countComputer = 0;
 var count = 0;
+const resetButton = document.getElementById("resetButton");
+const buttons = document.getElementById('buttons');
 let output;
 
 function getComputerSelection() {
@@ -32,29 +36,62 @@ function playRound(playerSelection) {
         text = "It's a draw";
     } else if (playerSelection==words[0]&&computerSelection==words[1]) {
         text = "You loose! Paper beats Rock";
+        countComputer++;
     } else if (playerSelection==words[0]&&computerSelection==words[2]) {
         text = "You win! Rock beats Scissors";
+        countPlayer++;
     } else if (playerSelection==words[1]&&computerSelection==words[0]) {
         text = "You win! Paper beats Rock";
+        countPlayer++;
     } else if (playerSelection==words[1]&&computerSelection==words[2]) {
         text = "You loose! Scissors beat Paper";
+        countComputer++;
     } else if (playerSelection==words[2]&&computerSelection==words[0]) {
         text = "You loose! Rock beats Scissors";
+        countComputer++;
     } else if (playerSelection==words[2]&&computerSelection==words[1]) {
         text = "You win! Scissors beat Paper";
+        countPlayer++;
     }
     output = result+"<br>"+text;
+    
     return output;
 }
 
 function game(playerSelection) {
-    getComputerSelection();
-    playRound(playerSelection);
-    let message = "Round "+(count+1)+"<br>"+output;
-    console.log(output);
-    count += 1;
-    const textparagraph = document.querySelector('#resultMessage');
-    textparagraph.classList.add('textparagraph');
-    textparagraph.innerHTML = message;
-
+    const counterPlayer = document.querySelector("#counterPlayer");
+    const counterComputer = document.querySelector("#counterComputer");
+    if (countPlayer < 5 | countComputer < 5) {
+        getComputerSelection();
+        playRound(playerSelection);
+        counterPlayer.classList.add('counterPlayer');
+        counterComputer.classList.add('counterPlayer');
+        counterPlayer.textContent = countPlayer;
+        counterComputer.textContent = countComputer;
+        if (countComputer == 5) {
+            let winner = "The Computer won!"
+            output = output+"<br><br>"+winner;
+        }
+        if (countPlayer == 5) {
+            winner = "YOU WON!";
+            output = output+"<br><br>"+winner;
+        }
+        let message = "Round "+(count+1)+"<br>"+output;
+        const textparagraph = document.querySelector('#resultMessage');
+        textparagraph.classList.add('textparagraph');
+        textparagraph.innerHTML = message;
+        if (countPlayer == 5 | countComputer == 5) {
+            buttons.style.display = "none";
+            resetButton.style.display = "inline";
+            resetButton.addEventListener("click", () => {
+                countPlayer = 0;
+                countComputer = 0;
+                counterComputer.textContent = countComputer;
+                counterPlayer.textContent = countPlayer;
+                textparagraph.textContent ="";
+                resetButton.style.display = "none";
+                buttons.style.display = "inline";
+            });
+        }
+    }
 }
